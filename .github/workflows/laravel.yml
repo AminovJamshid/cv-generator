@@ -48,5 +48,5 @@ jobs:
           script: |
             cd cv-generator
             git pull
-            docker compose -f docker-compose.production.yml up --build -d
+            docker-compose -f docker-compose.production.yml up --build -d
             docker exec laravel_app php artisan optimize
