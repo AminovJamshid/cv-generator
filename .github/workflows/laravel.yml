@@ -38,13 +38,14 @@ jobs:
     name: Deploy to DigitalOcean
     runs-on: ubuntu-latest
     steps:
-      - name: Echo secrets
-        run: echo ${{ secrets.HOST }} ${{ secrets.USERNAME }}
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: whoami
+          script: |
+            cd online-store
+            git pull
+            docker compose -f docker-compose.production.yml up --build -d
+            docker exec laravel_app php artisan optimize
