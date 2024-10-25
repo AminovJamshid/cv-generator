@@ -9,4 +9,6 @@ class Education extends Model
 {
     protected $table = 'educations';
     use HasFactory;
+
+
 }
