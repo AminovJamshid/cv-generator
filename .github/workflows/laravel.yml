@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd online-store
+            cd cv-generator
             git pull
             docker compose -f docker-compose.production.yml up --build -d
             docker exec laravel_app php artisan optimize
