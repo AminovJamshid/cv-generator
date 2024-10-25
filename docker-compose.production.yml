@@ -26,8 +26,8 @@ services:
     container_name: cv_db
     image: mysql:8  # Use MySQL image
     restart: always
-    expose:
-      - 3306
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: cv_db  # Create a database named 'laravel'
       MYSQL_ROOT_PASSWORD: root  # Set the root password for MySQL
