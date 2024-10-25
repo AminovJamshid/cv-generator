@@ -53,3 +53,5 @@ jobs:
             docker-compose -f docker-compose.production.yml up --build -d
             docker exec laravel_app php artisan optimize
 
+
+
