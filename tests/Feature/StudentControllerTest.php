@@ -35,44 +35,44 @@ class StudentControllerTest extends TestCase
             ]);
     }
 
-//    public function test_create_a_student_validation_error_on_missing_fields(): void
-//    {
-//        $response = $this->postJson('/api/students', [
-//            "first_name" => "John",
-//            "last_name" => "Doe",
-//            "nt_id" => "77777",
-//            "photo" => "skjnndsk1234.jpg",
-//            "profession" => "student",
-//            "phone" => "998888888888",
-//            "biography" => "If it ain't broke, don't fix it."
-//
-//        ]);
-//
-//        $response->assertStatus(422);
-//    }
+    public function test_create_a_student_validation_error_on_missing_fields(): void
+    {
+        $response = $this->postJson('/api/students', [
+            "first_name" => "",
+            "last_name" => "Doe",
+            "nt_id" => "77777",
+            "photo" => "skjnndsk1234.jpg",
+            "profession" => "student",
+            "phone" => "998888888888",
+            "biography" => "If it ain't broke, don't fix it."
 
-//    public function test_update_a_student()
-//    {
-//        $student = Student::factory()->create();
-//
-//        $response = $this->putJson("/api/students/2", [
-//            "first_name" => $student->first_name,
-//            "last_name" => $student->last_name,
-//            "nt_id" => $student->nt_id,
-//            "photo" => $student->photo,
-//            "profession" => $student->profession,
-//            "phone" => $student->phone,
-//            "biography" => $student->biography
-//        ]);
-//
-//        $response->assertStatus(201)
-//            ->assertJson([
-//                "first_name" => $student->first_name,
-//                "last_name" => $student->last_name,
-//                "nt_id" => $student->nt_id,
-//                "profession" => $student->profession,
-//            ]);
-//    }
+        ]);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_update_a_student()
+    {
+        $student = Student::factory()->create();
+
+        $response = $this->putJson("/api/students/{$student->id}", [
+            "first_name" => $student->first_name,
+            "last_name" => $student->last_name,
+            "nt_id" => $student->nt_id,
+            "photo" => $student->photo,
+            "profession" => $student->profession,
+            "phone" => $student->phone,
+            "biography" => $student->biography
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJson([
+                "first_name" => $student->first_name,
+                "last_name" => $student->last_name,
+                "nt_id" => $student->nt_id,
+                "profession" => $student->profession,
+            ]);
+    }
 
 
     public function test_update_a_validation_failed()
